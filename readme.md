@@ -1,61 +1,15 @@
-# html prettyprinter
+# html prettyprinter (FORKED)
 
-A node port of beautify-html.js by Nochum Sossonko which is based on jsbeautifier by Einar Lielmanis
+[![Known Vulnerabilities](https://snyk.io/test/github/apiaryio/commonjs-html-prettyprinter/badge.svg)](https://snyk.io/test/github/apiaryio/commonjs-html-prettyprinter)
 
-## Installation
+Fork of [commonjs-html-prettyprinter](https://github.com/maxogden/commonjs-html-prettyprinter). The reason for forking the project is [this security issue](https://snyk.io/vuln/npm:minimatch:20160620). [Dredd](https://github.com/apiaryio/dredd) temporarily depends on this fork until the security issue gets resolved.
 
-### from npm (node package manager)
-``` bash
-  npm install html
-```
+## Fix
 
-## Usage (command line)
+[maxogden/commonjs-html-prettyprinter#12](https://github.com/maxogden/commonjs-html-prettyprinter/pull/12) aims to resolve the issue in upstream. Once it's merged and new version of the project published to npm, this fork should get deprecated.
 
-```
-  echo "<h2><strong><a href="http://awesome.com">AwesomeCom</a></strong><span>is awesome</span></h2>" | html
-```
+## How the Fork Works
 
-returns:
-  
-``` html  
-  <h2>
-      <strong>
-          <a href=http://awesome.com>AwesomeCom</a>
-      </strong>
-      <span>
-          is awesome
-      </span>
-  </h2>
-````
-
-`html foo.html` will write the prettified version to `stdout`.
-
-`html *.html` will *update in place* all matching html files with their prettified versions.
-
-## Advanced usage
-
-I find myself constantly using the 'Copy as HTML' feature of the Chrome Inspector:
-
-![Copy as HTML](https://github.com/maxogden/commonjs-html-prettyprinter/raw/master/img/copyashtml.png)
-
-The downside is that that usually the HTML that gets copied is pretty ugly:
-
-![Before pretty printing](https://github.com/maxogden/commonjs-html-prettyprinter/raw/master/img/before.png)
-
-On OS X you can use `pbpaste` and `pbcopy` to stream your clipboard in and out of unix pipes. With the ugly HTML still in your clipboard run this command:
-
-`pbpaste | html | pbcopy`
-
-Now when you paste your clipboard into an editor you will get nice, pretty printed HTML:
-
-![After pretty printing](https://github.com/maxogden/commonjs-html-prettyprinter/raw/master/img/after.png)
-
-## Upgrading
-
-grab the newest `beautify-html.js` from [js-beautifier](https://github.com/einars/js-beautify) and drop it into `lib/` as `html.js`. then add the following code to the bottom of `html.js`:
-
-```javascript
-  module.exports = { prettyPrint: style_html }
-```
-
-BSD LICENSE
+- There's branch `honzajavorek/upgrade-glob` with fix and PR [maxogden/commonjs-html-prettyprinter#12](https://github.com/maxogden/commonjs-html-prettyprinter/pull/12) made from that branch.
+- The `master` branch of this repository cherry-picks the commit with fix and adds more (README update).
+- Since [apiaryio/dredd#589](https://github.com/apiaryio/dredd/pull/589) PR, [Dredd](https://github.com/apiaryio/dredd) depends on the is in the `honzajavorek/upgrade-glob` branch of this fork.
